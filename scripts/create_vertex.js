@@ -9,9 +9,8 @@ $(document).ready(function () {
         reader.readAsText(file);
         reader.onload = function(e) {
             let csv_data = e.target.result;
-            let result = {};
 
-            result = Papa.parse(csv_data, {
+            let result = Papa.parse(csv_data, {
                 header: true,
                 dynamicTyping: true,
                 preview: 2500,
@@ -28,11 +27,10 @@ $(document).ready(function () {
             str = str.replace(/\sPRIMARY\sDESCRIPTION/gi, "pri_description");
             str = str.replace(/\sSECONDARY\sDESCRIPTION/gi, "sec_description");
 
-            // console.log(str);
+            vertex_data = JSON.parse(str);
 
-            graph_data = JSON.parse(str);
-
-            convertGraphDatetimeToMoment(graph_data);
+            convertVertexDatetimeToMoment(vertex_data);
+            console.log("User input data loaded successfully");
         };
 
     });
