@@ -19,7 +19,14 @@
 
     <body class="container mt-4">
 
-        <h1> Hello world</h1>
+        <h1> Hello world </h1>
+        <!--<input type="file" name="myFile">-->
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+        </div>
 
 
         <!-- Scripts -->
@@ -27,11 +34,24 @@
         <!-- Jquery -->
         <script src="../libraries/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap Bundle with Popper -->
-        <script src="../libraries/bootstrap.bundle.min.js"></script>
+        <script src="../libraries/bootstrap.bundle.min.js" async></script>
         <!-- Moment -->
         <script src="../libraries/moment.js"></script>
+        <!-- Papaparse CSV to Json-->
+        <script src="../libraries/papaparse.min.js"></script>
 
-        <!-- Add graph scripts here -->
-        
+        <!-- Helper functions-->
+        <script src="../scripts/helpers.js"></script>
+
+        <!-- Graph scripts here -->
+        <!-- Global variable (obj)     graph_data -->
+        <!-- DO NOT MODIFY graph_data UNLESS user updates it via input file-->
+        <script src="../scripts/graph_default_data.js"></script>
+        <script src="../scripts/create_graph.js"></script>
+
+        <!-- Graph functions script here -->
+
+        <!-- Other scripts -->
+        <script src="../scripts/index.js"></script>
     </body>
 </html>
