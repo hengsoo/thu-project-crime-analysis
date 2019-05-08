@@ -57,7 +57,7 @@ $(document).ready(function () {
 
         // upper triangle matrix, simple graph
         for (let i = 0; i < vertex_number - 1; i++) {
-            edge[i] = {};
+            edge[i] = [];
             for (let j = i+1; j < vertex_number; j++) {
                 distance_between_cases = getDistanceBetween(vertex_data[i].latitude, vertex_data[i].longitude, vertex_data[j].latitude, vertex_data[j].longitude);
                 datetime_diff = vertex_data[i].datetime.diff(vertex_data[j].datetime, 'hours', true);

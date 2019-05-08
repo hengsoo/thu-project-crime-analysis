@@ -1,5 +1,5 @@
 // Global edge variable
-let edge = {};
+let edge = [];
 
 // Global vertex_data variables
-let vertex_data = {};
+let vertex_data = [];
