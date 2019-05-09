@@ -4,6 +4,8 @@
 let convertVertexDatetimeToMoment;
 // Get edges weight
 let getWeight;
+// Get adjacent nodes
+let getAdjNodes; 
 
 // Assign declared function variables to helper functions
 $(document).ready(function () {
@@ -22,6 +24,22 @@ $(document).ready(function () {
             [vertex_1, vertex_2] = [vertex_2, vertex_1];
         }
         return edge[vertex_1][vertex_2];
+    }
+
+    getAdjNodes = function(node_no,adj_mat=edge) 
+    {
+        let adj_nodes = [];
+        let node_count = adj_mat.length;
+        for(let i=0 ; i<node_count ; i++)
+        {
+            if(i==node_no)continue;
+            //if weight is -1 means no edge between the two nodes
+            if(getWeight(node_no,i)!=-1) 
+            {
+                adj_nodes.push(i);
+            }
+        }
+        return adj_nodes;
     }
 
 });
