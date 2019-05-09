@@ -1,8 +1,19 @@
 $(document).ready(function () {
     
     //Test case
-    shortestPath(2,0);
-    shortestPath(0,2);
+    $("#input_start_node, #input_end_node").change(function(e){
+        let start = $("#input_start_node").val();
+        let end = $("#input_end_node").val();
+
+        console.log(start!=-1 && end!=-1);
+        if(start!=-1 && end!=-1)
+        {
+           shortestPath(start,end);
+        }
+
+    });
+
+
     //End of test case
     
     //Custom queue function
