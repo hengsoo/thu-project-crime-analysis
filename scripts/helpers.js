@@ -28,12 +28,14 @@ $(document).ready(function () {
 
     getAdjNodes = function (node_no, adj_mat = edge) {
         let adj_nodes = [];
-        let node_count = adj_mat.length;
+
+        // add last node as edge doesn't store the last one
+        let node_count = adj_mat.length + 1;
 
         for (let i = 0; i < node_count; i++) {
 
             if (i === node_no) continue;
-            //if weight is -1 means no edge between the two nodes
+            // if weight is -1 means no edge between the two nodes
             if (getWeight(node_no, i) !== -1) {
                 adj_nodes.push(i);
             }
