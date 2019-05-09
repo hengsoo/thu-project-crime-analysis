@@ -8,9 +8,7 @@
     "url": "git+https://github.com/hengsoo/CrimeAnalysis.git"
   },
   "author": "hengsoo ngjuping",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hengsoo/CrimeAnalysis/issues"
-  },
-  "homepage": "https://github.com/hengsoo/CrimeAnalysis#readme"
+  "devDependencies": {
+    "browser-sync": "^2.26.5"
+  }
 }
