@@ -1,6 +1,21 @@
 $(document).ready(function () {
 
-    console.log(minimum_tree_span(72));
+    $("#input_community_area").change(function (e) {
+
+        let community_area = parseInt($("#input_community_area").val());
+
+        if (community_area != 0) {
+
+            let tree = minimum_tree_span(community_area);
+
+            console.log("Minimum tree span");
+            console.log("Community area: " + tree.community_area);
+            console.log("Weight: " + tree.weight);
+            console.log("Span: ");
+            console.log(tree.span);
+        }
+
+    });
 
     function minimum_tree_span(community_area = 1) {
 
@@ -16,7 +31,7 @@ $(document).ready(function () {
 
         // Add all the nodes in the community area to pick_set
         for (let i = 0; i < vertex_data.length; i++) {
-            if ( vertex_data[i].community_area === community_area){
+            if (vertex_data[i].community_area === community_area) {
                 pick_set.add(i);
             }
         }
