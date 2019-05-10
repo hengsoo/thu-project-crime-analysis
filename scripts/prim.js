@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         let community_area = parseInt($("#input_community_area").val());
 
-        if (community_area != 0) {
+        if (community_area !== 0) {
 
             let tree = minimum_tree_span(community_area);
 
