@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('input[type="file"]').change(function (e) {
+    $('#input_data_file').change(function (e) {
         create_vertex_data(e).then(
             function(){
                 create_edge();
