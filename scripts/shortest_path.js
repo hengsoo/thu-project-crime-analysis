@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
     //End of driver
     
-    //Custom queue function
+    //Custom queue constructor function
     function Queue()
     {
         this.q = [];
@@ -52,7 +52,7 @@ $(document).ready(function () {
         for(let i=0 ; i<node_count ; i++)
         {
             vertices[i] = {};
-            vertices[i].shortest = MAX;
+            vertices[i].min_cost = MAX;
             vertices[i].parent = 0;
         }
 
@@ -61,7 +61,7 @@ $(document).ready(function () {
         //initialize the queue with the starting node
         q.enqueue(start);
         vertices[start].parent = start;
-        vertices[start].shortest = 0;
+        vertices[start].min_cost = 0;
 
         while(q.len>0) //queue is not empty
         {
@@ -71,10 +71,11 @@ $(document).ready(function () {
             {
                 //for each nodes connected to current node
                 adj_nodes.forEach((next_node)=>{ 
-                    //if there is a change in shortest distance from start to next_node
-                    if(vertices[current_node].shortest + getWeight(current_node,next_node) < vertices[next_node].shortest)
-                    {
-                        vertices[next_node].shortest = vertices[current_node].shortest + getWeight(current_node,next_node);
+                    //if there is a change in shortest distance from start to next_node AND timeline is preserved
+                    if(vertices[current_node].min_cost + getWeight(current_node,next_node) < vertices[next_node].min_cost &&
+                      vertex_data[next_node].datetime.isAfter(vertex_data[current_node].datetime))
+                    { 
+                        vertices[next_node].min_cost = vertices[current_node].min_cost + getWeight(current_node,next_node);
                         //update parent on the shortest path
                         vertices[next_node].parent = current_node;
                         //add it to the queue
@@ -83,24 +84,28 @@ $(document).ready(function () {
                 })
             }
         }
-
-        //gives the shortest distance from start to end
-        console.log("Shortest path length: " + vertices[end].shortest) 
-
-        //Computes the path using the parent array
-        var steps = [];
-        var parent = vertices[end].parent;
-
-        //Because end is not considered in the assignment above, we need to add end explicitly
-        steps.unshift(end);
-        while(parent!=start)
+        //If path is found
+        if(vertices[end].min_cost!=Infinity)
         {
-            steps.unshift(parent);
-            parent = vertices[parent].parent;
-        }
-        //Because start is not considered when the while loop ends, so we need to add start explicitly
-        steps.unshift(start);
-        //Prints shortest path separated by arrow
-        console.log("Shortest path: " + steps.join(" -> "));
+            console.log("Shortest path length: " + vertices[end].min_cost) 
+            let steps = [];
+            let parent = vertices[end].parent;
+
+            //Because end is not considered in the assignment above, we need to add end explicitly
+            steps.unshift(end);
+            while(parent!=start)
+            {
+                steps.unshift(parent);
+                parent = vertices[parent].parent;
+            }
+            //Because start is not considered when the while loop ends, so we need to add start explicitly
+            steps.unshift(start);
+            //Prints shortest path separated by arrow
+            console.log("Shortest path: " + steps.join(" -> "));
+            }
+            else
+            {
+                console.log("NO PATH")
+            }
     }
 }); //end document ready
