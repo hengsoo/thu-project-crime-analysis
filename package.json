@@ -1,0 +1,17 @@
+{
+  "name": "crimeanalysis",
+  "version": "1.0.0",
+  "description": "Analyse criminal case data",
+  "main": "app_entry.js",
+  "scripts": {
+    "dev": "browser-sync start -s -f . --index ./views/index.html --no-notify --no-online "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hengsoo/CrimeAnalysis.git"
+  },
+  "author": "hengsoo ngjuping",
+  "devDependencies": {
+    "browser-sync": "^2.26.5"
+  }
+}
