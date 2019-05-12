@@ -7,7 +7,11 @@ $(document).ready(function () {
 
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
-            shortestPath(start, end);
+            let result = shortestPath(start, end);
+            console.log("Shortest Path " + start + " -> " + end + ":");
+            console.log("Cost: " + result.cost);
+            console.log("Path: ");
+            console.log(result.path);
         }
 
     }); // End of driver
@@ -61,7 +65,7 @@ function shortestPath(start = 0, end = 10) {
     }
     //If path is found
     if (vertices[end].min_cost !== Infinity) {
-        console.log("Shortest path length: " + vertices[end].min_cost)
+
         let steps = [];
         let parent = vertices[end].parent;
 
@@ -73,10 +77,12 @@ function shortestPath(start = 0, end = 10) {
         }
         //Because start is not considered when the while loop ends, so we need to add start explicitly
         steps.unshift(start);
-        //Prints shortest path separated by arrow
-        console.log("Shortest path: " + steps.join(" -> "));
-    } else {
-        console.log("NO PATH")
+
+        // Return result
+        return {"path": steps, "cost": vertices[end].min_cost};
+    }
+    else {
+        return {"path": "No Path", "cost": Infinity};
     }
 }
 
