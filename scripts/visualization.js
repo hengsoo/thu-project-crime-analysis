@@ -5,7 +5,11 @@ $(document).ready(function () {
     result.links = [];
 
     vertex_data.forEach(function (element, index, array) {
-        result.nodes.push({"id": index});
+        if (element.community_area < 10) {
+            console.log(element.community_area);
+            result.nodes.push({"id": index, "data": element});
+        }
+
     });
 
 
@@ -17,51 +21,93 @@ $(document).ready(function () {
         }
     }
 
-    console.log(JSON.stringify(result));
+    // console.log(JSON.stringify(result));
 
-    // Select canvas
-    let canvas = $("canvas").get(0),
-        context = canvas.getContext("2d"),
-        width = canvas.width,
-        height = canvas.height;
+    // Select svg
+    let svg = d3.select("svg"),
+        width = +svg.attr("width"),
+        height = +svg.attr("height");
 
     let simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function (d) {
-            return d.id;
-        }).distance(300) )
-        .force("charge", d3.forceManyBody())
-        .force("center", d3.forceCenter(width / 2, height / 2));
-
+        .nodes(result.nodes);
 
     simulation
-        .nodes(result.nodes)
-        .on("tick", ticked);
+        .force("charge_force", d3.forceManyBody())
+        .force("center_force", d3.forceCenter(width / 2, height / 2));
 
-    simulation.force("link")
-        .links(result.links)
-    ;
 
-    d3.select(canvas)
-        .call(d3.drag()
-            .container(canvas)
-            .subject(dragsubject)
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+
+    //Create the link force
+    //We need the id accessor to use named sources and targets
+    let link_force = d3.forceLink(result.links)
+        .id(function (d) {
+            return d.id;
+        })
+        .distance(300);
+
+    simulation.force("links",link_force);
+    //add forces
+    //we're going to add a charge to each node
+    //also going to add a centering force
+
+
+//draw lines for the links
+    let link = svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(result.links)
+        .enter().append("line")
+        .attr("stroke-width", 2);
+
+    //draw circles for the nodes
+    let node = svg.append("g")
+        .attr("class", "nodes")
+        .selectAll("circle")
+        .data(result.nodes)
+        .enter()
+        .append("circle")
+        .attr("r", 5)
+        .attr("fill", "red");
+
+
+    simulation.on("tick", ticked);
+    // d3.select("svg")
+    //     .call(d3.drag()
+    //         .container(svg)
+    //         .subject(dragsubject)
+    //         .on("start", dragstarted)
+    //         .on("drag", dragged)
+    //         .on("end", dragended));
 
     function ticked() {
-        context.clearRect(0, 0, width, height);
-
-        context.beginPath();
-        result.links.forEach(drawLink);
-        context.strokeStyle = "#1e31aa";
-        context.stroke();
-
-        context.beginPath();
-        result.nodes.forEach(drawNode);
-
-        context.fill();
-        context.stroke();
+        node
+            .attr("cx", function (d) {
+                return d.x;
+            })
+            .attr("cy", function (d) {
+                return d.y;
+            })
+            .call(d3.drag()
+                .subject(dragsubject)
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));;
+        // update link positions
+        //simply tells one end of the line to follow one node around
+        //and the other end of the line to follow the other node around
+        link
+            .attr("x1", function (d) {
+                return d.source.x;
+            })
+            .attr("y1", function (d) {
+                return d.source.y;
+            })
+            .attr("x2", function (d) {
+                return d.target.x;
+            })
+            .attr("y2", function (d) {
+                return d.target.y;
+            });
     }
 
     function dragsubject() {
@@ -92,13 +138,15 @@ $(document).ready(function () {
 
     function drawNode(d) {
         context.moveTo(d.x + 3, d.y);
-        // console.log(d);
         context.arc(d.x, d.y, 3, 0, 2 * Math.PI);
-        if (d.id == 81) {
+
+        if (d.data.community_area == 1) {
+            context.beginPath();
             context.fillStyle = "#fff";
-            // console.log("asd")
+
         } else {
             context.fillStyle = "#ff7765";
+            context.fill();
         }
 
     }
