@@ -1,0 +1,61 @@
+function graphData(type, data, save_to) {
+    switch (type) {
+        case "shortest_path":
+            break;
+        case "minimum_tree_span":
+            // Set nodes of community area
+            vertex_data.forEach(function (element, index, array) {
+                if (element.community_area == data.community_area) {
+                    save_to.nodes.push({"id": index, "data": element});
+                }
+            });
+
+            // Set links that consist of nodes of community area <= 10
+            for (let i = 0; i < edge.length; i++) {
+                for (let key in edge[i]) {
+                    if (edge[i][key] !== -1 && vertex_data[key].community_area == data.community_area && vertex_data[i].community_area == data.community_area) {
+                        save_to.links.push({"source": i, "target": key})
+                    }
+                }
+            }
+
+            break;
+        case "closeness_centrality":
+            break;
+        case "betweenness_centrality":
+            break;
+    }
+}
+
+function nodeColoring(type, data, save_to) {
+    switch (type) {
+        case "shortest_path":
+            break;
+        case "minimum_tree_span":
+
+            break;
+        case "closeness_centrality":
+            break;
+        case "betweenness_centrality":
+            break;
+    }
+}
+
+function linkColoring(node, data, type) {
+    switch (type) {
+        case "shortest_path":
+            break;
+        case "minimum_tree_span":
+            // Set links that consist of nodes of community area <= 10
+            for (let i = 0; i < data.span.length; i++) {
+                if (data.span[i].includes(node.source.id) &&  data.span[i].includes(node.target.id)){
+                    return "green";
+                }
+            }
+            break;
+        case "closeness_centrality":
+            break;
+        case "betweenness_centrality":
+            break;
+    }
+}

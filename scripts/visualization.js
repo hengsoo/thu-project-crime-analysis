@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    // drawGraph();
+    // End of drag functions
+});
+
+function drawGraph(type, data){
+    $("#basic_svg").empty();
 
     // Display graph data
     let graph = {};
@@ -6,22 +12,7 @@ $(document).ready(function () {
     graph.links = [];
 
     // Graph nodes
-    // Currently set nodes of community area <= 10
-    vertex_data.forEach(function (element, index, array) {
-        if (element.community_area < 10) {
-            graph.nodes.push({"id": index, "data": element});
-        }
-    });
-
-    // Graph links
-    // Currently set links that consist of nodes of community area <= 10
-    for (let i = 0; i < edge.length; i++) {
-        for (let key in edge[i]) {
-            if (edge[i][key] !== -1 && vertex_data[key].community_area < 10 && vertex_data[i].community_area < 10) {
-                graph.links.push({"source": i, "target": key})
-            }
-        }
-    }
+    graphData(type, data, graph);
 
     // Select svg
     let svg = d3.select("#basic_svg"),
@@ -41,7 +32,6 @@ $(document).ready(function () {
         .force("charge_force", d3.forceManyBody())
         .force("center_force", d3.forceCenter(width / 2, height / 2));
 
-
     // Create the link force
     // forceLink(links_data) pushes linked elements to be a fixed distance apart
     // can be configured using .distance() (default value is 30) and .strength()
@@ -55,14 +45,16 @@ $(document).ready(function () {
     // Add force
     simulation.force("links", link_force);
 
-
     // Draw lines for the links
     let link = svg.append("g")
         .attr("class", "links")
         .selectAll("line")
         .data(graph.links)
         .enter().append("line")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 2)
+        .style("stroke", function(node){
+           return linkColoring(node, data, "minimum_tree_span");
+        });
 
     // Draw circles for the nodes
     let node = svg.append("g")
@@ -131,5 +123,6 @@ $(document).ready(function () {
         d3.event.subject.fx = null;
         d3.event.subject.fy = null;
     }
-    // End of drag functions
-});
+}
+
+
