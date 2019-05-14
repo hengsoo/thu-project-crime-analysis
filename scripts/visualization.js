@@ -56,6 +56,11 @@ function drawGraph(type, data){
            return linkColoring(node, data, "minimum_tree_span");
         });
 
+    var tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     // Draw circles for the nodes
     let node = svg.append("g")
         .attr("class", "nodes")
@@ -64,7 +69,25 @@ function drawGraph(type, data){
         .enter()
         .append("circle")
         .attr("r", 5)
-        .attr("fill", "red");
+        .attr("class", "node_tooltip")
+        .attr("fill", "red")
+        .on('mouseover.tooltip', function(d) {
+            tooltip.transition()
+                .duration(300)
+                .style("opacity", .8);
+            tooltip.html("<p>Name: " + d.data.case_id + "<p/>Area: " + d.data.community_area)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 10) + "px");
+        })
+        .on("mouseout.tooltip", function() {
+            tooltip.transition()
+                .duration(100)
+                .style("opacity", 0);
+        })
+        .on("mousemove", function() {
+            tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 10) + "px");
+        });
 
     // Tick can be regarded as how frame moves to frame
     simulation.on("tick", ticked);
