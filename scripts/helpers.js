@@ -37,3 +37,13 @@ function getAdjNodes(node_no, adj_mat = edge) {
     }
     return adj_nodes;
 }
+
+//Download a json file
+function download(content, fileName, contentType) 
+{
+  var a = document.createElement("a");
+  var file = new Blob([content], {type: contentType});
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+}

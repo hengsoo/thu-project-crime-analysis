@@ -40,6 +40,12 @@
             <input type="number" class="form-control" id="input_community_area" placeholder="Enter community_id" value=0>
         </div>
 
+        <div class="form-group">
+            <label for="input_bc_node">Betweenness Centrality</label>
+            <input type="number" class="form-control" id="input_bc_node" placeholder="Enter node number here" value=-1>
+ 
+        </div>
+
         <!-- Scripts -->
 
         <!-- Jquery -->
@@ -62,7 +68,8 @@
         <!-- Default graph data (vertex and edge) 300 nodes-->
         <script src="../scripts/vertex_default_data.js"></script>
         <script src="../scripts/edge_default_data.js"></script>
-
+        <script src="../scripts/shortest_paths.js"></script>
+        
         <!-- Create graph based on user input-->
         <script src="../scripts/create_graph.js"></script>
 
@@ -73,6 +80,8 @@
         <!-- Prim's Algorithm Minimum Tree Span-->
         <script src="../scripts/prim.js"></script>
 
+        <!--Betweenness Centrality-->
+        <script src="../scripts/betweenness_centrality.js"></script>
         <!-- Other scripts -->
         <script src="../scripts/index.js"></script>
     </body>

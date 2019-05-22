@@ -20,9 +20,12 @@ $(document).ready(function () {
 
 // Given start and end, finds the shortest path using dijkstra
 function shortestPath(start = 0, end = 10) {
+    if(start==end) 
+    {
+        return {"path": "No Path", "cost": 0};
+    }
     const MAX = Infinity;
     const node_count = edge.length + 1;
-
     //double security
     if (!(start >= 0 && end < vertex_data.length)) {
         console.log("start and end node error");
