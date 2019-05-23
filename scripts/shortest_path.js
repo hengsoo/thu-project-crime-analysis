@@ -7,11 +7,12 @@ $(document).ready(function () {
 
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
-            let result = shortestPath(start, end);
+            let sp = shortestPath(start, end);
+            drawGraph("shortest_path", sp);
             console.log("Shortest Path " + start + " -> " + end + ":");
-            console.log("Cost: " + result.cost);
+            console.log("Cost: " + sp.cost);
             console.log("Path: ");
-            console.log(result.path);
+            console.log(sp.path);
         }
 
     }); // End of driver
@@ -28,6 +29,11 @@ function shortestPath(start = 0, end = 10) {
         console.log("start and end node error");
         //end the function
         return;
+    }
+    //distance to self is 
+    if(start==end)
+    {
+        return {"path":[start],"cost":0};
     }
     //initialize some array that will be used to store parent,shortest path length
     let vertices = [];

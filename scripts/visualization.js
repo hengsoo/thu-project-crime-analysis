@@ -40,26 +40,52 @@ function drawGraph(type, data){
         .id(function (d) {
             return d.id;
         })
-        .distance(300);
+        .distance(function(d){
+            //length scales with distance
+            return (getWeight(d.source.id,d.target.id))*10000%500||300;
+        });
 
     // Add force
     simulation.force("links", link_force);
 
-    // Draw lines for the links
-    let link = svg.append("g")
-        .attr("class", "links")
-        .selectAll("line")
-        .data(graph.links)
-        .enter().append("line")
-        .attr("stroke-width", 2)
-        .style("stroke", function(node){
-           return linkColoring(node, data, "minimum_tree_span");
-        });
 
     var tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
+        // Draw lines for the links
+    
+    
+    let link = svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("stroke-width", 4)
+        .on('mouseover.tooltip', function(d) {
+            console.log(d);
+            tooltip.transition()
+                .duration(300)
+                .style("opacity", .8);
+            tooltip.html("<p>Length: " + getWeight(d.source.id,d.target.id) + " </p>")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 10) + "px")
+                .style("border","2px solid black")
+                .style("background-color","white")
+                .style("border-radius","10px");
+        })
+        .on("mouseout.tooltip", function() {
+            tooltip.transition()
+                .duration(100)
+                .style("opacity", 0);
+        })
+        .on("mousemove", function() {
+            tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 10) + "px");
+        })
+        .style("stroke", function(node){
+           return linkColoring(node, data, type);
+        });
 
     // Draw circles for the nodes
     let node = svg.append("g")

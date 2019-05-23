@@ -1,6 +1,23 @@
 function graphData(type, data, save_to) {
     switch (type) {
         case "shortest_path":
+        //Ignore cases where no paths are found
+        if(data.path=="No Path") return;
+        
+        //Add nodes in the path
+        for(let i=0 ; i<data.path.length ; i++)
+        {
+            let node = {"id":data.path[i],"data":vertex_data[data.path[i]]};
+            save_to.nodes.push(node);
+        }
+
+        //Add links linking nodes after another
+        for(let i=0 ; i<data.path.length-1 ; i++)
+        {
+            let link = {"source":data.path[i],"target":data.path[i+1]};
+            save_to.links.push(link);
+        }
+
             break;
         case "minimum_tree_span":
             // Set nodes of community area

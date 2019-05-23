@@ -12,6 +12,8 @@ function convertVertexDatetimeToMoment(vertex_obj) {
 
 // Get edges weight
 function getWeight(vertex_1, vertex_2) {
+    //distance from self to self is just zero
+    if(vertex_1 == vertex_2) return 0;
     // swap vertex_1 and vertex_2 to ensure that vertex_1 smaller than vertex_2
     if (vertex_1 > vertex_2) {
         [vertex_1, vertex_2] = [vertex_2, vertex_1];
