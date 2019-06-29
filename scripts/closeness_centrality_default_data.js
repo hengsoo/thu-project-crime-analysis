@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 // insert data from obj_edge to array edge
     for (let key in obj_closeness_centrality) {
-        closeness_centrality.push(obj_closeness_centrality[key]);
+        vertex_data[key]["closeness"] = obj_closeness_centrality[key];
     }
 
     console.log("Default closeness centrality loaded successfully");

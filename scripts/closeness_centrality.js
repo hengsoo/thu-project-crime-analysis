@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    runClosenessCentrality();
+    // runClosenessCentrality();
 });
 
 async function runClosenessCentrality() {

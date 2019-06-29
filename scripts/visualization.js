@@ -3,7 +3,7 @@ $(document).ready(function () {
     // End of drag functions
 });
 
-function drawGraph(type, data){
+function drawGraph(type, data) {
     $("#basic_svg").empty();
 
     // Display graph data
@@ -32,6 +32,11 @@ function drawGraph(type, data){
         .force("charge_force", d3.forceManyBody())
         .force("center_force", d3.forceCenter(width / 2, height / 2));
 
+    if (type === "closeness_centrality") {
+        simulation
+            .force("charge_force", d3.forceManyBody().strength(-1).distanceMin(600));
+    }
+
     // Create the link force
     // forceLink(links_data) pushes linked elements to be a fixed distance apart
     // can be configured using .distance() (default value is 30) and .strength()
@@ -40,9 +45,9 @@ function drawGraph(type, data){
         .id(function (d) {
             return d.id;
         })
-        .distance(function(d){
+        .distance(function (d) {
             //length scales with distance
-            return (getWeight(d.source.id,d.target.id))*10000%500||300;
+            return (getWeight(d.source.id, d.target.id)) * 10000 % 500 || 300;
         });
 
     // Add force
@@ -53,38 +58,16 @@ function drawGraph(type, data){
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
-        // Draw lines for the links
-    
-    
+    // Draw lines for the links
+
     let link = svg.append("g")
         .attr("class", "links")
         .selectAll("line")
         .data(graph.links)
         .enter().append("line")
         .attr("stroke-width", 4)
-        .on('mouseover.tooltip', function(d) {
-            console.log(d);
-            tooltip.transition()
-                .duration(300)
-                .style("opacity", 1);
-            tooltip.html("<p>Length: " + getWeight(d.source.id,d.target.id) + " </p>")
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY + 10) + "px")
-                .style("border","2px solid black")
-                .style("background-color","white")
-                .style("border-radius","10px");
-        })
-        .on("mouseout.tooltip", function() {
-            tooltip.transition()
-                .duration(100)
-                .style("opacity", 0);
-        })
-        .on("mousemove", function() {
-            tooltip.style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY + 10) + "px");
-        })
-        .style("stroke", function(node){
-           return linkColoring(node, data, type);
+        .style("stroke", function (node) {
+            return linkColoring(node, data, type);
         });
 
     // Draw circles for the nodes
@@ -97,26 +80,17 @@ function drawGraph(type, data){
         .attr("r", 5)
         .attr("class", "node_tooltip")
         .attr("fill", "red")
-        .on('mouseover.tooltip', function(d) {
-            tooltip.transition()
-                .duration(300)
-                .style("opacity", 1);
-            tooltip.html("<p>Name: " + d.data.case_id + "<p/>Area: " + d.data.community_area)
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY + 10) + "px");
+        .attr("data-toggle", "tooltip")
+        .attr("title", function (d) {
+            return d.data.case_id;
         })
-        .on("mouseout.tooltip", function() {
-            tooltip.transition()
-                .duration(100)
-                .style("opacity", 0);
-        })
-        .on("mousemove", function() {
-            tooltip.style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY + 10) + "px");
+        .style("fill", function (node) {
+            return nodeColoring(node, data, type);
         });
 
     // Tick can be regarded as how frame moves to frame
     simulation.on("tick", ticked);
+
     // Ticked function
     function ticked() {
         node
@@ -172,6 +146,40 @@ function drawGraph(type, data){
         d3.event.subject.fx = null;
         d3.event.subject.fy = null;
     }
+
+    $('svg circle, svg line').tooltip({
+        'container': 'body',
+    });
+
+    $('svg line').hover(function (e) {
+            // console.log(e.target.x1.baseVal.value);
+            let t = $('svg').offset().top;
+            let x_offset = (e.target.x1.baseVal.value + e.target.x2.baseVal.value) / 2;
+            let y_offset = (e.target.y1.baseVal.value + e.target.y2.baseVal.value) / 2;
+            $('body').append($("<div class=\"bs-tooltip-top line-tooltip tooltip fade show\" " +
+                "style=\"will-change: transform; position: absolute; " +
+                "transform: translate3d("+ Math.round(x_offset) +"px," + Math.round(y_offset) + "px, 0px); top: " +t  +"px; left: 0px;\" " +
+                "x-placement=\"top\">" +
+                "<div class=\"arrow\" style=\"left: 92px;\"></div>\n" +
+                "<div class=\"tooltip-inner\">" +
+                "Length: 0.7882942869484855" +
+                "</div>\n" +
+                "</div>"));
+        }, function () {
+            $('body').find(".tooltip.fade.show.line-tooltip.bs-tooltip-top").remove();
+        }
+    );
+    // $('svg line').on('inserted.bs.tooltip', function (e) {
+    //     console.log($('.tooltip.fade.bs-tooltip-top.show'));
+    //     $('.tooltip.fade.bs-tooltip-top.show').css({
+    //         transform: "translate3d(" + e.width / 2 + "px, "+ 1 +"px, 0)",
+    //     })
+    // });
+
+
+    // $('tooltip show').style({
+    //     'transform': translate3d();
+    // });
 }
 
 
