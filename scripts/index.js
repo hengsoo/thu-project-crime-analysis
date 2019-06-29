@@ -6,5 +6,5 @@ $(document).ready(function(){
         $('.custom-file-label').html(fileName);
     });
 
-    drawGraph("closeness_centrality", vertex_data);
+    drawGraph("closeness_centrality", vertex_data, "#basic_svg");
 });

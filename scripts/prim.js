@@ -8,7 +8,7 @@ $(document).ready(function () {
         if (community_area !== 0) {
 
             let tree = minimum_tree_span(community_area);
-            drawGraph("minimum_tree_span", tree);
+            drawGraph("minimum_tree_span", tree, "#basic_svg");
             console.log("Minimum tree span");
             console.log("Community area: " + tree.community_area);
             console.log("Weight: " + tree.weight);
