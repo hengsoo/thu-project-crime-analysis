@@ -166,8 +166,8 @@ function drawGraph(type, data, id) {
             // Get absolute offset value
             let y_offset = rect.top + rect.height / 2 - 20 + $(document).scrollTop();
             let x_offset = rect.left + rect.width;
-
-            let weight = getWeight($(e.target).attr("source-id"), $(e.target).attr("target-id")) * 10000 % 500 || 300;
+            
+            let weight = getWeight(parseInt($(e.target).attr("source-id")), parseInt($(e.target).attr("target-id")));
 
             $('body').append($("<div class=\"bs-tooltip-right line-tooltip tooltip fade show\" " +
                 "style=\"will-change: transform; position: absolute; " +
