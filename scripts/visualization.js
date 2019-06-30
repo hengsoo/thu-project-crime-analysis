@@ -53,13 +53,7 @@ function drawGraph(type, data, id) {
     // Add force
     simulation.force("links", link_force);
 
-
-    var tooltip = d3.select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
     // Draw lines for the links
-
     let link = svg.append("g")
         .attr("class", "links")
         .selectAll("line")
@@ -81,8 +75,16 @@ function drawGraph(type, data, id) {
         .attr("class", "node_tooltip")
         .attr("fill", "red")
         .attr("data-toggle", "tooltip")
+        .attr("data-html", true)
         .attr("title", function (d) {
-            return d.data.case_id;
+
+            let title = "<b>ID: </b>" + d.data.case_id + "<br>"
+                + "<b>DateTime: </b>" + d.data.datetime.format("dddd, MMMM Do YYYY, h:mm:ss a") + "<br>"
+                + "<b>Type: </b>" + d.data.pri_description +"<br>"
+                + "<b>Location: </b>" + d.data.block_address +"<br>"
+                + "<b>Community Area: </b>" + d.data.community_area + "<br>"
+                + "<b>Closeness Centrality: </b>" + Math.round(d.data.closeness);
+            return title;
         })
         .style("fill", function (node) {
             return nodeColoring(node, data, type);
@@ -153,18 +155,19 @@ function drawGraph(type, data, id) {
         d3.event.subject.fy = null;
     }
 
-    $('svg circle, svg line').tooltip({
+    // Bootstrap tooltips settings
+    $('svg circle').tooltip({
         'container': 'body',
     });
-
+    // Custom position line tooltip
     $('svg line').hover(function (e) {
-        // Get absolute offset value of svg item
-        let rect = e.target.getBoundingClientRect();
+            // Get absolute offset value of svg item
+            let rect = e.target.getBoundingClientRect();
             // Get absolute offset value
-            let y_offset = rect.top + rect.height/2 - 20 + $(document).scrollTop();
+            let y_offset = rect.top + rect.height / 2 - 20 + $(document).scrollTop();
             let x_offset = rect.left + rect.width;
 
-            let weight = getWeight($(e.target).attr("source-id"),  $(e.target).attr("target-id"))* 10000 % 500 || 300;
+            let weight = getWeight($(e.target).attr("source-id"), $(e.target).attr("target-id")) * 10000 % 500 || 300;
 
             $('body').append($("<div class=\"bs-tooltip-right line-tooltip tooltip fade show\" " +
                 "style=\"will-change: transform; position: absolute; " +
