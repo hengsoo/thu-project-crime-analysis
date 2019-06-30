@@ -69,7 +69,7 @@ function nodeColoring(node, data, type) {
 
         case "closeness_centrality":
             let closeness_color_red = 255 - 255 * (data.min_closeness/node.data.closeness);
-            let closeness_color_blue = 255 - closeness_color_red;
+            let closeness_color_blue = 255 - closeness_color_red * 1.5;
             return "rgb(" + closeness_color_red  + ",0," + closeness_color_blue + ")";
 
         case "betweenness_centrality":
