@@ -50,6 +50,9 @@ $(document).ready(function () {
     }
 
     function create_edge() {
+        // Global edge_number variable
+        edge_count = 0;
+
         let vertex_number = Object.keys(vertex_data).length;
         console.log("Vertex Number: " + vertex_number);
 
@@ -70,6 +73,7 @@ $(document).ready(function () {
                 }
                 else {
                     edge[i][j] = ( distance_between_cases * Math.abs(datetime_diff) * case_similarity ) / 10000;
+                    edge_count++;
                 }
             }
         }

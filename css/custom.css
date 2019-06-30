@@ -7,12 +7,26 @@ h1, h2, h3, span, p {
     color: white;
 }
 
+p{
+    font-size: 22px;
+}
+.header.dark {
+    background-color: #394245;
+    border-top-color: #394245;
+}
+.header.dark {
+    color: #cacaca;
+}
+.header.dark {
+    border-bottom: none;
+}
+
 #introduction-banner{
     background-image: url("../images/introduction_banner.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-.feature-box.light-gray-bg > h1,h2,h3,span{
+.feature-box.light-gray-bg > h1,h2,h3,span,strong{
     color: rgba(0, 0, 0, 0.92);
 }
