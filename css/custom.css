@@ -1,0 +1,18 @@
+body{
+    background-color: #090821;
+
+}
+
+h1, h2, h3, span, p {
+    color: white;
+}
+
+#introduction-banner{
+    background-image: url("../images/introduction_banner.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.feature-box.light-gray-bg > h1,h2,h3,span{
+    color: rgba(0, 0, 0, 0.92);
+}

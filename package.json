@@ -4,7 +4,7 @@
   "description": "Analyse criminal case data",
   "main": "app_entry.js",
   "scripts": {
-    "dev": "browser-sync start -s -f . --index ./views/index.html --no-notify --no-online "
+    "dev": "browser-sync start -s -f . --index ./views/next_gen.html --no-notify --no-online "
   },
   "repository": {
     "type": "git",
