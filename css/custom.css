@@ -9,6 +9,7 @@ h1, h2, h3, span, p {
 p{
     font-size: 22px;
 }
+
 .header.dark {
     background-color: #394245;
     border-top-color: #394245;
@@ -28,4 +29,17 @@ p{
 
 .feature-box.light-gray-bg > h1,h2,h3,span,strong{
     color: rgba(0, 0, 0, 0.92);
+}
+
+#modelling  p, h1, h2, h3{
+    color: rgba(0, 0, 0, 0.92);
+}
+
+#modelling li, ul{
+    font-size: 18px;
+}
+
+#modelling i{
+    color: rgba(84, 84, 84, 0.92);
+    font-size: 16px;
 }
