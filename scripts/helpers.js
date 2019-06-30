@@ -39,8 +39,13 @@ function getAdjNodes(node_no, adj_mat = edge) {
 }
 
 //Download a json file
-function download(content, fileName, contentType) 
+function download(content, fileName, contentType)
 {
+  //Example of usage:
+  // var obj = {a:514,b:"Hello World"};
+  // download(JSON.stringify(obj),"test.json")
+  // A system alert box will pop up to select download destination
+  // data saved in json file named test
   var a = document.createElement("a");
   var file = new Blob([content], {type: contentType});
   a.href = URL.createObjectURL(file);
