@@ -16,7 +16,7 @@ function closenessCentrality() {
         let path_cost = 0;
 
         for (let i = 0; i < num_of_nodes; i++) {
-            console.log(i);
+            console.log("Calculating node: " + i);
             sum_of_distance = 0;
 
             for (let j = 0; j < num_of_nodes; j++) {

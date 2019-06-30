@@ -51,7 +51,6 @@ function graphData(type, data, save_to) {
                 save_to.nodes.push({"id": index, "data": element});
             });
             // save min closeness to vertex data GLOBAL
-            console.log(min_closeness);
             vertex_data["min_closeness"] = min_closeness;
             break;
 
