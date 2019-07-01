@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     // insert data from obj_vertex_data to array vertex_data
         for (let key in  obj_vertex_data) {
-            vertex_data.push( obj_vertex_data[key]);
+            vertex_data.push(obj_vertex_data[key]);
         }
 
     convertVertexDatetimeToMoment(vertex_data);

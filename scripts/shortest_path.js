@@ -8,7 +8,7 @@ $(document).ready(function () {
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
             let sp = shortestPath(start, end);
-            drawGraph("shortest_path", sp);
+            drawGraph("shortest_path", sp,"#basic_svg2");
             console.log("Shortest Path " + start + " -> " + end + ":");
             console.log("Cost: " + sp.cost);
             console.log("Path: ");
