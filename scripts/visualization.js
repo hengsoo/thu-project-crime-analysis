@@ -32,7 +32,7 @@ function drawGraph(type, data, id) {
         .force("charge_force", d3.forceManyBody())
         .force("center_force", d3.forceCenter(width / 2, height / 2));
 
-    if (type === "closeness_centrality") {
+    if (type === "closeness_centrality" || type === "betweenness_centrality") {
         simulation
             .force("charge_force", d3.forceManyBody().strength(-1).distanceMin(600));
     }
@@ -83,7 +83,9 @@ function drawGraph(type, data, id) {
                 + "<b>Type: </b>" + d.data.pri_description + "<br>"
                 + "<b>Location: </b>" + d.data.block_address + "<br>"
                 + "<b>Community Area: </b>" + d.data.community_area + "<br>"
-                + "<b>Closeness Centrality: </b>" + Math.round(d.data.closeness*100)/100;
+                + "<b>Closeness Centrality: </b>" + Math.round(d.data.closeness*100)/100
+                + "<b>Betweenness Centrality: </b>" + Math.round(d.data.betweenness * 1000);
+          
             return title;
         })
         .style("fill", function (node) {

@@ -68,7 +68,7 @@ function minimum_tree_span(community_area = 1) {
                 tree_node = adj_nodes[i];
 
                 // if tree_node is in pick_set or tree_node is not in the community_area then skip
-                if (pick_set.has(tree_node) || vertex_data[tree_node].community_area !== community_area ) continue;
+                if (pick_set.has(tree_node) || vertex_data[tree_node].community_area !== community_area) continue;
 
                 // get weight of pick_node of pick_set and tree_node
                 let weight = getWeight(tree_node, pick_node);
