@@ -26,4 +26,5 @@ $(document).ready(function(){
 
 
     drawGraph("closeness_centrality", vertex_data, "#basic_svg");
+    drawGraph("betweenness_centrality", vertex_data, "#basic_svg2");
 });
