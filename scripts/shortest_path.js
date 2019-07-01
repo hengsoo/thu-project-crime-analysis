@@ -7,12 +7,12 @@ $(document).ready(function () {
 
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
-            let sp = shortestPath(start, end);
-            drawGraph("shortest_path", sp, "#basic_svg2");
+            let shortest_path_from_start_to_end = shortestPath(start, end);
+            drawGraph("shortest_path", shortest_path_from_start_to_end, "#basic_svg2");
             console.log("Shortest Path " + start + " -> " + end + ":");
-            console.log("Cost: " + sp.cost);
+            console.log("Cost: " + shortest_path_from_start_to_end.cost);
             console.log("Path: ");
-            console.log(sp.path);
+            console.log(shortest_path_from_start_to_end.path);
         }
 
     }); // End of driver
@@ -96,11 +96,11 @@ function shortestPath(start = 0, end = 10) {
 function Queue() {
     this.q = [];
     this.len = 0;
-    this.enqueue = function (val) {
+    this.enqueue = function (val) { //add new element to the end of queue
         this.len++;
         this.q.push(val);
     };
-    this.dequeue = function () {
+    this.dequeue = function () { //pop the first element in the queue
         this.len--;
         return this.q.shift();
     }
