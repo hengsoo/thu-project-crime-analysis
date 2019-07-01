@@ -4,8 +4,7 @@ $(document).ready(function () {
     $("#input_start_node, #input_end_node").change(function (e) {
         let start = parseInt($("#input_start_node").val());
         let end = parseInt($("#input_end_node").val());
-
-        start = 1; end = 5;
+        
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
             let sp = shortestPath(start, end);
