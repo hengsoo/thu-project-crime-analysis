@@ -56,6 +56,20 @@ p, label{
     color: white !important;
 }
 
-#shortest-path{
+#shortest-path, #centrality{
     background-color: rgba(9, 8, 33, 0.02);
+}
+
+mark.red{
+    color: white;
+    background-color: #ff2128;
+    border-radius: 8px;
+    padding: 0 6px 0 6px;
+}
+
+mark.blue{
+    color: white;
+    background-color: #2b30ff;
+    border-radius: 8px;
+    padding: 0 6px 0 6px;
 }
