@@ -1,13 +1,9 @@
 $(document).ready(function () {
     // Driver code
-    $("#input_bc_node").change(function (e) {
-        let node = parseInt($("#input_bc_node").val());
-        console.log("Calculating betweenness centrality for node " + node);
-        console.log(bc(node));
-    }); // End of driver
+    // End of driver
 });
 
-function bc(node)
+function betweennessCentrality(node)
 {
   const node_count = edge.length+1;
   const total_sp = (node_count-1)*(node_count-2);
