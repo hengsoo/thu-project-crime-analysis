@@ -51,10 +51,25 @@ function graphData(type, data, save_to) {
                 save_to.nodes.push({"id": index, "data": element});
             });
             // save min closeness to vertex data GLOBAL
-            vertex_data["min_closeness"] = min_closeness;
+            centrality_global_extremum["min_closeness"] = min_closeness;
+            console.log("MIN CC: " + min_closeness);
+
             break;
 
         case "betweenness_centrality":
+            let max_betweenness = -1;
+            // Add all nodes
+            vertex_data.forEach(function (element, index, array) {
+                // get lowest closeness
+                if (element.betweenness > max_betweenness && element.betweenness) {
+                    
+                    max_betweenness = element.betweenness;
+                }
+                save_to.nodes.push({"id": index, "data": element});
+            });
+           
+            console.log("MAX BC: " + max_betweenness);
+            centrality_global_extremum["max_betweenness"] = max_betweenness;
             break;
     }
 }
@@ -68,12 +83,14 @@ function nodeColoring(node, data, type) {
             break;
 
         case "closeness_centrality":
-            let closeness_color_red = 255 - 255 * (data.min_closeness/node.data.closeness);
+            let closeness_color_red = 255 - 255 * (centrality_global_extremum.min_closeness/node.data.closeness);
             let closeness_color_blue = 255 - closeness_color_red * 1.5;
             return "rgb(" + closeness_color_red  + ",0," + closeness_color_blue + ")";
 
         case "betweenness_centrality":
-            break;
+            let betweenness_color_red = 255 * (node.data.betweenness/centrality_global_extremum.max_betweenness);
+            let betweenness_color_blue = (255- betweenness_color_red)*0.5;
+            return "rgb(" + betweenness_color_red  + ",0," + betweenness_color_blue + ")";
     }
 }
 
