@@ -10,3 +10,6 @@ let shortest_paths = [];
 
 // Global closeness centrality variable
 let closeness_centrality = [];
+
+// Store min of closeness centrality and max of betweenness centrality
+let centrality_global_extremum = {};
