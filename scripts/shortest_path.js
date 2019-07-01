@@ -98,7 +98,8 @@ function shortestPath(start = 0, end = 10) {
 
         // Return result
         return {"path": steps, "cost": vertices[end].min_cost};
-    } else {
+    }
+    else {
         return {"path": "No Path", "cost": Infinity};
     }
 }

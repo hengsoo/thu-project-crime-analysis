@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     // Smooth Scroll
     let scroll = new SmoothScroll('a[href*="#"]:not([href*="?t="]):not([href="#"])',{
-        offset:200,
+        offset:200
     });
 
     // Initialize graph

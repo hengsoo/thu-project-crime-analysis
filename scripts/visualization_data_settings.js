@@ -103,7 +103,7 @@ function linkColoring(node, data, type) {
         case "shortest_path":
             break;
         case "minimum_tree_span":
-            // Set links that consist of nodes of community area <= 10
+            // Make minimum span tree branches be green color
             for (let i = 0; i < data.span.length; i++) {
                 if (data.span[i].includes(node.source.id) && data.span[i].includes(node.target.id)) {
                     return "green";

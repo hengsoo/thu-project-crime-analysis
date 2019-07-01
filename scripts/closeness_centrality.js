@@ -6,7 +6,7 @@ $(document).ready(function () {
 async function runClosenessCentrality() {
     let result = await closenessCentrality();
     console.log(result);
-    downloadContentToFileName(result, "closeness_data.json")
+    downloadContentToFileName(result, "closeness_data.json");
 }
 
 function closenessCentrality() {

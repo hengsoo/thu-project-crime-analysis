@@ -84,7 +84,7 @@ function drawGraph(type, data, id) {
                 + "<b>Location: </b>" + d.data.block_address + "<br>"
                 + "<b>Community Area: </b>" + d.data.community_area + "<br>"
                 + "<b>Closeness Centrality: </b>" + Math.round(d.data.closeness*100)/100 + "<br>"
-                + "<b>Betweenness Centrality: </b>" + Math.round(d.data.betweenness * 1000);
+                + "<b>Betweenness Centrality: </b>" + Math.round(d.data.betweenness * 1000)/1000;
           
             return title;
         })
@@ -185,5 +185,3 @@ function drawGraph(type, data, id) {
         }
     );
 }
-
-

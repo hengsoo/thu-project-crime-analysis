@@ -101,7 +101,8 @@ $(document).ready(function () {
     function getCaseSimilarity(case_1, case_2) {
         if (case_1.pri_description == case_2.pri_description) {
             return 1;
-        } else {
+        }
+        else {
             return 10;
         }
     }
