@@ -1,0 +1,86 @@
+body{
+    background-color: white;
+}
+
+h1, h2, h3, span, p {
+    color: rgba(0, 0, 0, 0.92);
+}
+
+p, label{
+    font-size: 22px;
+}
+
+.header.dark {
+    background-color: #1b1e21;
+    border-top-color: #1b1e21;
+}
+.header.dark .site-slogan {
+    color: #ffffff;
+}
+.header.dark {
+    border-bottom: none;
+}
+
+#logo img:hover{
+    opacity: 1;
+}
+#introduction-banner{
+    background-image: url("../images/introduction_banner.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#introduction-banner  p{
+    color: white;
+}
+.feature-box.light-gray-bg > h1,h2,h3,span,strong{
+    color: rgba(0, 0, 0, 0.92);
+}
+
+#modelling  p, h1, h2, h3{
+    color: rgba(0, 0, 0, 0.92);
+}
+
+#modelling li, ul{
+    font-size: 20px;
+}
+
+#modelling i{
+    color: rgba(84, 84, 84, 0.92);
+    font-size: 18px;
+}
+
+.btn-default{
+    background-color: #09afdf;
+    border-color: #0c9ec7;
+}
+
+.btn-default i{
+    color: white !important;
+}
+
+#shortest-path, #centrality{
+    background-color: rgba(9, 8, 33, 0.02);
+}
+
+mark.red{
+    color: white;
+    background-color: #ff2128;
+    border-radius: 8px;
+    padding: 0 6px 0 6px;
+}
+
+mark.blue{
+    color: white;
+    background-color: #2b30ff;
+    border-radius: 8px;
+    padding: 0 6px 0 6px;
+}
+
+#about-us{
+    background-color: #1b1e21;
+}
+
+#about-us h2{
+    color: white;
+}

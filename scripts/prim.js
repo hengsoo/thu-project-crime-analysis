@@ -9,6 +9,14 @@ $(document).ready(function () {
 
             let tree = minimum_tree_span(community_area);
 
+            if (tree.span.length === 0) {
+                $('#prim-error').text("***不存在该社区编号***");
+            }
+            else {
+                $('#prim-error').text("");
+            }
+
+            drawGraph("minimum_tree_span", tree, "#prim-svg");
             console.log("Minimum tree span");
             console.log("Community area: " + tree.community_area);
             console.log("Weight: " + tree.weight);
@@ -59,8 +67,8 @@ function minimum_tree_span(community_area = 1) {
                 // adjacent node as tree node
                 tree_node = adj_nodes[i];
 
-                // if tree_node is in pick_set then skip
-                if (pick_set.has(tree_node)) continue;
+                // if tree_node is in pick_set or tree_node is not in the community_area then skip
+                if (pick_set.has(tree_node) || vertex_data[tree_node].community_area !== community_area) continue;
 
                 // get weight of pick_node of pick_set and tree_node
                 let weight = getWeight(tree_node, pick_node);

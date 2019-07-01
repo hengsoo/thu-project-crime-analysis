@@ -2,13 +2,13 @@ $(document).ready(function () {
 
     $('#input_data_file').change(function (e) {
         create_vertex_data(e).then(
-            function(){
+            function () {
                 create_edge();
             }
         )
     });
 
-    function create_vertex_data (e) {
+    function create_vertex_data(e) {
         return new Promise(function (resolve, reject) {
             let file = $('input[type="file"]')[0].files[0];
 
@@ -50,6 +50,9 @@ $(document).ready(function () {
     }
 
     function create_edge() {
+        // Global edge_number variable
+        edge_count = 0;
+
         let vertex_number = Object.keys(vertex_data).length;
         console.log("Vertex Number: " + vertex_number);
 
@@ -58,18 +61,18 @@ $(document).ready(function () {
         // upper triangle matrix, simple graph
         for (let i = 0; i < vertex_number - 1; i++) {
             edge[i] = {};
-            for (let j = i+1; j < vertex_number; j++) {
+            for (let j = i + 1; j < vertex_number; j++) {
                 distance_between_cases = getDistanceBetween(vertex_data[i].latitude, vertex_data[i].longitude, vertex_data[j].latitude, vertex_data[j].longitude);
                 datetime_diff = vertex_data[i].datetime.diff(vertex_data[j].datetime, 'hours', true);
                 travel_velocity_between_case = getTravelVelocity(distance_between_cases, datetime_diff);
                 case_similarity = getCaseSimilarity(vertex_data[i], vertex_data[j]);
 
                 // if suspect travels faster than 200km/h, forfeit edge
-                if (travel_velocity_between_case > 200 || (distance_between_cases * Math.abs(datetime_diff) * case_similarity ) / 10000 > 20 ) {
+                if (travel_velocity_between_case > 200 || (distance_between_cases * Math.abs(datetime_diff) * case_similarity) / 10000 > 20) {
                     edge[i][j] = -1;
-                }
-                else {
-                    edge[i][j] = ( distance_between_cases * Math.abs(datetime_diff) * case_similarity ) / 10000;
+                } else {
+                    edge[i][j] = (distance_between_cases * Math.abs(datetime_diff) * case_similarity) / 10000;
+                    edge_count++;
                 }
             }
         }

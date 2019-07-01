@@ -7,11 +7,23 @@ $(document).ready(function () {
 
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
-            let result = shortestPath(start, end);
+
+            let shortest_path_from_start_to_end = shortestPath(start, end);
+          
+            // If shortest path doesn't exists          
+            if (shortest_path_from_start_to_end.cost === Infinity) {
+                $('#shortest-path-error').text("***不存在该路径***");
+            }
+            else {
+                $('#shortest-path-error').text("");
+            }
+          
+            drawGraph("shortest_path", shortest_path_from_start_to_end, "#shortest-path-svg");
+
             console.log("Shortest Path " + start + " -> " + end + ":");
-            console.log("Cost: " + result.cost);
+            console.log("Cost: " + shortest_path_from_start_to_end.cost);
             console.log("Path: ");
-            console.log(result.path);
+            console.log(shortest_path_from_start_to_end.path);
         }
 
     }); // End of driver
@@ -20,14 +32,20 @@ $(document).ready(function () {
 
 // Given start and end, finds the shortest path using dijkstra
 function shortestPath(start = 0, end = 10) {
+    if (start == end) {
+        return {"path": "No Path", "cost": 0};
+    }
     const MAX = Infinity;
     const node_count = edge.length + 1;
-
     //double security
     if (!(start >= 0 && end < vertex_data.length)) {
         console.log("start and end node error");
         //end the function
         return;
+    }
+    //distance to self is 
+    if (start == end) {
+        return {"path": [start], "cost": 0};
     }
     //initialize some array that will be used to store parent,shortest path length
     let vertices = [];
@@ -90,11 +108,11 @@ function shortestPath(start = 0, end = 10) {
 function Queue() {
     this.q = [];
     this.len = 0;
-    this.enqueue = function (val) {
+    this.enqueue = function (val) { //add new element to the end of queue
         this.len++;
         this.q.push(val);
     };
-    this.dequeue = function () {
+    this.dequeue = function () { //pop the first element in the queue
         this.len--;
         return this.q.shift();
     }
