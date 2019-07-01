@@ -1,12 +1,12 @@
 body{
-    background-color: rgba(9, 8, 33, 0.02);
+    background-color: white;
 }
 
 h1, h2, h3, span, p {
-    color: white;
+    color: rgba(0, 0, 0, 0.92);
 }
 
-p{
+p, label{
     font-size: 22px;
 }
 
@@ -14,8 +14,8 @@ p{
     background-color: #394245;
     border-top-color: #394245;
 }
-.header.dark {
-    color: #cacaca;
+.header.dark .site-slogan {
+    color: #ffffff;
 }
 .header.dark {
     border-bottom: none;
@@ -27,6 +27,9 @@ p{
     background-attachment: fixed;
 }
 
+#introduction-banner  p{
+    color: white;
+}
 .feature-box.light-gray-bg > h1,h2,h3,span,strong{
     color: rgba(0, 0, 0, 0.92);
 }
@@ -51,4 +54,8 @@ p{
 
 .btn-default i{
     color: white !important;
+}
+
+#shortest-path{
+    background-color: rgba(9, 8, 33, 0.02);
 }

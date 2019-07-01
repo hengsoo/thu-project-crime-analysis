@@ -23,7 +23,4 @@ $(document).ready(function(){
         });
     }
 
-
-
-    drawGraph("closeness_centrality", vertex_data, "#basic_svg");
 });
