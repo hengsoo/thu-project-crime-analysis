@@ -8,6 +8,14 @@ $(document).ready(function () {
         if (community_area !== 0) {
 
             let tree = minimum_tree_span(community_area);
+
+            if (tree.span.length === 0) {
+                $('#prim-error').text("***不存在该社区编号***");
+            }
+            else {
+                $('#prim-error').text("");
+            }
+
             drawGraph("minimum_tree_span", tree, "#prim-svg");
             console.log("Minimum tree span");
             console.log("Community area: " + tree.community_area);
