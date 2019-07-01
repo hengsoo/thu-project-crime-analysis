@@ -93,7 +93,7 @@ function nodeColoring(node, data, type) {
 
         case "betweenness_centrality":
             let betweenness_color_red = 255 * (node.data.betweenness / centrality_global_extremum.max_betweenness);
-            let betweenness_color_blue = (255 - betweenness_color_red) * 0.5;
+            let betweenness_color_blue = (255 - betweenness_color_red) * 0.9;
             return "rgb(" + betweenness_color_red + ",0," + betweenness_color_blue + ")";
     }
 }
