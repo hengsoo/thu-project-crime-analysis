@@ -1,14 +1,5 @@
 $(document).ready(function () {
-    start = 1; end = 5;
-    // if both input area is filled and contains in vertex set
-    if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
-        let sp = shortestPath(start, end);
-        drawGraph("shortest_path", sp, "#shortest-path-svg");
-        console.log("Shortest Path " + start + " -> " + end + ":");
-        console.log("Cost: " + sp.cost);
-        console.log("Path: ");
-        console.log(sp.path);
-    }
+
     // Driver code
     $("#input_start_node, #input_end_node").change(function (e) {
         let start = parseInt($("#input_start_node").val());
