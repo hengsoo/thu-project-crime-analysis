@@ -7,8 +7,19 @@ $(document).ready(function () {
 
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
+
             let shortest_path_from_start_to_end = shortestPath(start, end);
-            drawGraph("shortest_path", shortest_path_from_start_to_end, "#basic_svg2");
+          
+            // If shortest path doesn't exists          
+            if (shortest_path_from_start_to_end.cost === Infinity) {
+                $('#shortest-path-error').text("***不存在该路径***");
+            }
+            else {
+                $('#shortest-path-error').text("");
+            }
+          
+            drawGraph("shortest_path", shortest_path_from_start_to_end, "#shortest-path-svg");
+
             console.log("Shortest Path " + start + " -> " + end + ":");
             console.log("Cost: " + shortest_path_from_start_to_end.cost);
             console.log("Path: ");

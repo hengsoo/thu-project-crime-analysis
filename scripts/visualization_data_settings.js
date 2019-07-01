@@ -41,11 +41,15 @@ function graphData(type, data, save_to) {
             let min_closeness = Infinity;
             // Add all nodes
             vertex_data.forEach(function (element, index, array) {
-                // get lowest closeness
 
+                // if vertex date is latest date, hence no shortest path
+                // with regards to datetime order
+                if (element.closeness === null) {
+                    return;
+                }
+                // get lowest closeness
                 if (element.closeness < min_closeness && element.closeness) {
                     min_closeness = element.closeness;
-                    console.log(min_closeness);
                 }
 
                 save_to.nodes.push({"id": index, "data": element});
@@ -83,8 +87,8 @@ function nodeColoring(node, data, type) {
             break;
 
         case "closeness_centrality":
-            let closeness_color_red = 255 - 255 * (centrality_global_extremum.min_closeness / node.data.closeness);
-            let closeness_color_blue = 255 - closeness_color_red * 1.5;
+            let closeness_color_blue = 255 - 255 * (centrality_global_extremum.min_closeness / node.data.closeness);
+            let closeness_color_red = 255 - closeness_color_blue * 1.5;
             return "rgb(" + closeness_color_red + ",0," + closeness_color_blue + ")";
 
         case "betweenness_centrality":

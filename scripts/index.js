@@ -23,7 +23,17 @@ $(document).ready(function () {
         });
     }
 
+    // Smooth Scroll
+    let scroll = new SmoothScroll('a[href*="#"]:not([href*="?t="]):not([href="#"])',{
+        offset:200,
+    });
 
-    drawGraph("closeness_centrality", vertex_data, "#basic_svg");
-    drawGraph("betweenness_centrality", vertex_data, "#basic_svg2");
+    // Initialize graph
+    let initialize_shortest_path_data = shortestPath(1,5);
+    drawGraph("shortest_path", initialize_shortest_path_data, "#shortest-path-svg");
+    let initialize_minimum_tree_span_data = minimum_tree_span(1);
+    drawGraph("minimum_tree_span", initialize_minimum_tree_span_data, "#prim-svg");
+    drawGraph("closeness_centrality", vertex_data, "#closeness-svg");
+    drawGraph("betweenness_centrality", vertex_data, "#betweenness-svg");
+
 });
