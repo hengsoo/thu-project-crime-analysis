@@ -4,10 +4,16 @@ $(document).ready(function () {
     $("#input_start_node, #input_end_node").change(function (e) {
         let start = parseInt($("#input_start_node").val());
         let end = parseInt($("#input_end_node").val());
-        
+
         // if both input area is filled and contains in vertex set
         if (start >= 0 && end >= 0 && start < vertex_data.length && end < vertex_data.length) {
             let sp = shortestPath(start, end);
+            if (sp.cost === Infinity) {
+                $('#shortest-path-error').text("***不存在该路径***");
+            }
+            else {
+                $('#shortest-path-error').text("");
+            }
             drawGraph("shortest_path", sp, "#shortest-path-svg");
             console.log("Shortest Path " + start + " -> " + end + ":");
             console.log("Cost: " + sp.cost);
@@ -31,9 +37,8 @@ function shortestPath(start = 0, end = 10) {
         return;
     }
     //distance to self is 
-    if(start==end)
-    {
-        return {"path":[start],"cost":0};
+    if (start == end) {
+        return {"path": [start], "cost": 0};
     }
     //initialize some array that will be used to store parent,shortest path length
     let vertices = [];

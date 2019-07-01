@@ -80,10 +80,10 @@ function drawGraph(type, data, id) {
 
             let title = "<b>ID: </b>" + d.data.case_id + "<br>"
                 + "<b>DateTime: </b>" + d.data.datetime.format("dddd, MMMM Do YYYY, h:mm:ss a") + "<br>"
-                + "<b>Type: </b>" + d.data.pri_description +"<br>"
-                + "<b>Location: </b>" + d.data.block_address +"<br>"
+                + "<b>Type: </b>" + d.data.pri_description + "<br>"
+                + "<b>Location: </b>" + d.data.block_address + "<br>"
                 + "<b>Community Area: </b>" + d.data.community_area + "<br>"
-                + "<b>Closeness Centrality: </b>" + Math.round(d.data.closeness);
+                + "<b>Closeness Centrality: </b>" + Math.round(d.data.closeness*100)/100;
             return title;
         })
         .style("fill", function (node) {
@@ -166,7 +166,7 @@ function drawGraph(type, data, id) {
             // Get absolute offset value
             let y_offset = rect.top + rect.height / 2 - 20 + $(document).scrollTop();
             let x_offset = rect.left + rect.width;
-            
+
             let weight = getWeight(parseInt($(e.target).attr("source-id")), parseInt($(e.target).attr("target-id")));
 
             $('body').append($("<div class=\"bs-tooltip-right line-tooltip tooltip fade show\" " +

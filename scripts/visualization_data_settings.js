@@ -42,7 +42,7 @@ function graphData(type, data, save_to) {
             // Add all nodes
             vertex_data.forEach(function (element, index, array) {
                 // get lowest closeness
-
+                console.log(element.closeness);
                 if (element.closeness < min_closeness && element.closeness) {
                     min_closeness = element.closeness;
                     console.log(min_closeness);
@@ -68,9 +68,9 @@ function nodeColoring(node, data, type) {
             break;
 
         case "closeness_centrality":
-            let closeness_color_red = 255 - 255 * (data.min_closeness/node.data.closeness);
-            let closeness_color_blue = 255 - closeness_color_red * 1.5;
-            return "rgb(" + closeness_color_red  + ",0," + closeness_color_blue + ")";
+            let closeness_color_blue = 255 - 255 * (data.min_closeness / node.data.closeness);
+            let closeness_color_red = 255 - closeness_color_blue * 1.5;
+            return "rgb(" + closeness_color_red + ",0," + closeness_color_blue + ")";
 
         case "betweenness_centrality":
             break;
