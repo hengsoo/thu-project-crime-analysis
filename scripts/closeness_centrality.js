@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    // Driver code
     // runClosenessCentrality();
 });
 
 async function runClosenessCentrality() {
     let result = await closenessCentrality();
     console.log(result);
+    downloadContentToFileName(result, "closeness_data.json")
 }
 
 function closenessCentrality() {

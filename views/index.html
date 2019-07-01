@@ -25,9 +25,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css"/>
 </head>
-
 <body>
 
+    <!-- Header menu -->
     <header class="header dark clearfix">
         <div class="container">
             <div class="row">
@@ -90,12 +90,13 @@
         </div>
     </header>
 
+    <!-- Introduction and statistics -->
     <section id="introduction-banner" class="pv-40 stats section pv-40 parallax dark-translucent-bg"
              style="background-position: 50% -64px;">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <h1 style="text-underline: azure">芝加哥罪案分析</h1>
+                    <h1>芝加哥罪案分析</h1>
                     <div class="separator"></div>
                     <p>使用图论算法分析 芝加哥 2019 犯罪 ( 未逮捕 ) 记录，挖掘有用的信息。</p>
                 </div>
@@ -122,6 +123,7 @@
         </div>
     </section>
 
+    <!-- Analysis Modelling -->
     <section id="modelling" class="pv-30">
         <div class="container">
             <div class="row align-items-center">
@@ -211,6 +213,7 @@
         <br>
     </section>
 
+    <!-- Shortest Path -->
     <section id="shortest-path" class="pv-30">
         <div class="container">
             <div class="row align-items-center">
@@ -235,6 +238,7 @@
         <br>
     </section>
 
+    <!-- Minimum Tree Span -->
     <section id="prim" class="pv-30">
         <div class="container">
             <div class="row align-items-center">
@@ -256,6 +260,7 @@
         <br>
     </section>
 
+    <!-- Closeness and Betweenness Centrality -->
     <section id="centrality" class="pv-30">
         <div class="container">
             <div class="row align-items-center">
@@ -284,6 +289,7 @@
         <br>
     </section>
 
+    <!-- About us -->
     <section id="about-us" class="pv-30">
         <div class="container text-center">
             <h2>关于我们</h2>
@@ -330,24 +336,35 @@
     </section>
 
     <!-- Scripts -->
+
+    <!-- Library scripts -->
     <!-- Jquery -->
     <script src="../libraries/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap Bundle with Popper -->
     <script src="../libraries/bootstrap.bundle.min.js" async></script>
     <!-- Moment -->
     <script src="../libraries/moment.js"></script>
-    <!-- Papaparse CSV to Json-->
+    <!-- Papaparse CSV to Json -->
     <script src="../libraries/papaparse.min.js"></script>
     <!-- D3.js -->
     <script src="../libraries/d3.v4.min.js"></script>
-    <!-- Graph scripts here -->
+    <!-- Waypoint for statistics counter -->
+    <script src="../libraries/jquery.waypoints.min.js"></script>
+    <!-- Counter -->
+    <script src="../libraries/jquery.countTo.min.js"></script>
+    <!-- Smooth scroll -->
+    <script src="../libraries/smooth-scroll.min.js"></script>
+
+    <!-- Analytic Scripts -->
 
     <!-- Helper functions -->
     <script src="../scripts/helpers.js"></script>
 
-    <!-- Global variable (obj)     vertex_data, edge -->
+    <!-- Global variable -->
     <!-- DO NOT MODIFY vertex_data, edge UNLESS user updates it via input file -->
     <script src="../scripts/global_variables.js"></script>
+
+    <!-- Default data -->
     <!-- Default graph data (vertex and edge) 300 nodes -->
     <script src="../scripts/vertex_default_data.js"></script>
     <script src="../scripts/edge_default_data.js"></script>
@@ -359,7 +376,6 @@
     <!-- Create graph based on user input -->
     <script src="../scripts/create_graph.js"></script>
 
-    <!-- Graph functions script here -->
     <!-- Visualization -->
     <script src="../scripts/visualization_data_settings.js"></script>
     <script src="../scripts/visualization.js"></script>
@@ -373,18 +389,11 @@
     <!-- Closeness Centrality -->
     <script src="../scripts/closeness_centrality.js"></script>
 
-    <!-- Other scripts -->
+    <!--Betweenness Centrality-->
+    <script src="../scripts/betweenness_centrality.js"></script>
 
-    <!-- Waypoint for counter-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"
-            integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
-    <!-- Smooth scroll-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/12.1.5/js/smooth-scroll.min.js" integrity="sha256-MMt0/21G3z0Zg4ET1kI3HC9npItDowkitRDVr0FhCxA=" crossorigin="anonymous"></script>
-
-    <!-- Counter-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.2.0/jquery.countTo.min.js"
-            integrity="sha256-ABaSwG2hLCOs+8EKSe3XsIukUcbV1nraP4uzVL+cuS4=" crossorigin="anonymous"></script>
-
+    <!-- Initialization Script -->
     <script src="../scripts/index.js"></script>
+
 </body>
 </html>
