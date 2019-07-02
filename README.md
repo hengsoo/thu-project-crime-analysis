@@ -1,10 +1,5 @@
-## 离散数学(2) 大作业
-
-黄祖斌 2018080120         苏敬恒 2018080124
-
-
-
-### 主题
+# 离散数学(2) 大作业
+## 主题
 
 分析芝加哥2019犯罪(未逮捕)记录
 
@@ -12,117 +7,22 @@
 
  https://catalog.data.gov/dataset/crimes-one-year-prior-to-present-e171f/resource/a94a8c54-a4df-400a-add3-2d6b1d8ed2af?inner_span=True>
 
+## Installation
+Run `npm install --dev` to install **browser-sync**
+
+Run `npm run dev` to run **browser-sync**
  
+## File Descriptions
+|Folder| File Name| Description|
+|:-------------:| :-------------:|:-------------:| 
+|views| index.html    | **Index file** | 
+|scripts| betweenness_centrality.js| Algorithm for **Betweenness Centrality**      |
+|scripts| closeness centrality.js | Algorithm for **Closeness Centrality**       |
+|scripts| prim.js | Algorithm for **Minimum Tree Span**       |
+|scripts| shortest_path.js | Algorithm for **Shortest Path**       |
+|scripts| create_graph.js | **Create Vertices and Edges** Function  |
+|scripts| visualization.js | **Visualization** Function  |
 
-------
-
-
-
-#### 最新调整(2019年5月6日)：
-
-1. 最终权重大于20的边不予考虑。
-
-   理由：第一个限制条件所减去的边数量太少（<1%），总边数接近n^2。
-
-2. 存储边时使用了上三角邻接矩阵，没有边相连的两个结点的权重设为-1。
-
-3. 在计算最短路径时可能将图根据时间线化为有向图以使用Djkstra算法（初步假设）。
-
-------
-
-
-
-### 模型建立
-
-图：无向图
-
- 
-
-节点：以案件编号为节点
-
-节点限制条件： 若案件已有逮捕犯人则放弃该节点
-
- 
-
-边：案件之间的距离 * 时间差 * 案件相似度
-边限制条件：若两件案件距离与案发时间不符 （二案发地点行程速度大于200km/h），则去除该边。
-
-
-
-| *案件之间的距离* | 大圆距离 ( 通过经纬度和半正矢公式计算, 以千米作为单位 ) |
-| ---------------- | ------------------------------------------------------- |
-| *时间差*         | 两件案件发生时间的差 ( 以小时作为单位 )                 |
-| *案件相似度*     | 若案件的主要描述一样，案件相似度为1；否则为10           |
-
- 
-
-#### 最短路径
-
-A案件到B案件之间最有牵连的案件 (同伙)
-
-#### 最小生成树 
-
-案件与案件之间的最大联系 (同伙) 以社区为单位
-
-#### 节点中心度
-
-介数中心度： 该案件与周围的案件可能是有组织性的
-
-紧密中心度： 最大线索发现的案件
-
- 
-
-------
-
-
-
-### 技术方面
-
-**编程语言：** JavaScript, HTML, CSS
-
-**可视化库:** D3.js
-
-##### 节点信息
-
-| 命名            | 数据类型          | 样例                  |
-| --------------- | ----------------- | --------------------- |
-| case_id         | string            | JC137815              |
-| datetime        | object ( Moment ) | -                     |
-| latitude        | number            | 41.96846289           |
-| longitude       | number            | -87.65967044          |
-| community_area  | number            | 31                    |
-| block_address   | string            | 045XX N GREENVIEW AVE |
-| pri_description | string            | THEFT                 |
-| sec_description | string            | OVER $500             |
-
-
-
-#### 功能函数 
-
-| 函数名                        | 功能                                                         |
-| ----------------------------- | ------------------------------------------------------------ |
-| convertVertexDatetimeToMoment | 接受1个结点对象为参数，将其中的时间信息转换成moment对象，以方便之后处理时间 |
-| getWeight                     | 接受两个结点对象为参数，返回连接这两个结点的边的权重。       |
-
-
-
-#### 全局变量
-
-| 变量名      | 内容                     |
-| ----------- | ------------------------ |
-| edge        | 存储从某节点到某节点的边 |
-| vertex_data | 存储结点                 |
-
- 
-
-------
-
-
-
-### 分工
-
-祖斌：最短路径 介数中心度
-
-敬恒：最小生成树 紧密中心度 整理数据
-
- 
+## Author
+黄祖斌 2018080120
+苏敬恒 2018080124
