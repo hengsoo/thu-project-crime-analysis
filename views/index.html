@@ -135,11 +135,12 @@
                         <li><strong>图: </strong>无向图</li>
                         <li><strong>节点: </strong>案件 <i>( 若案件已有逮捕犯人则放弃该节点 )</i></li>
                         <li><strong>边: </strong> 案件之间的距离 * 时间差 * 案件相似度</li>
-                        <li><i>若两件案件距离与案发时间不符 ( 二案发地点行程速度大于200km/h), 则去除该边</i></li>
+                        <li><i>若两件案件距离与案发时间不符 ( 二案发地点行程速度大于200km/h), 则去除该边。</i></li>
+                        <li><i>边权越小，案件之间的关系越大。</i></li>
                         <li><strong>案件之间的距离: </strong>大圆距离 </li>
-                        <li><i>通过经纬度和半正矢公式计算, 以千米作为单位</i></li>
+                        <li><i>通过经纬度和半正矢公式计算, 以千米作为单位。</i></li>
                         <li><strong>时间差: </strong>两件案件发生时间的差<i> ( 以小时作为单位 )</i></li>
-                        <li><strong>案件相似度: </strong>若案件的主要描述一样，案件相似度为1；否则为10</li>
+                        <li><strong>案件相似度: </strong>若案件的主要描述一样，案件相似度为1；否则为10。</li>
                     </ul>
 
                     <p class="m-0"><i>最终 <strong>权重大于20</strong> 的边不予考虑。</i></p>
@@ -220,12 +221,15 @@
                 <div class="col-lg-6">
                     <h2 class="mt-4"><strong>最短</strong>路径</h2>
                     <div class="separator-2"></div>
-                    <p>用点和线勾勒出案件之间的千丝万缕</p>
+                    <p><strong>两个密切相关的案件之间，还隐藏着什么破案关键？</strong></p>
+                    <p>通过求两个由小权重边连接起来的结点的最短路径，有机会找出更短的路径，路径上的案件可以提供一些犯人的逃逸/作案范围的线索。</p>
+                    <p>警察们通过证据和目击证人的供词，锁定了两起可能由同一伙人犯下的抢劫案<strong>( 案件A, B )</strong> 。通过寻找这两个案件之间的最短路径，
+                        发现在这两个案件发生的时间间隔内有几起小型的打劫案和袭警案，因此可以根据这几个地点画一个闭包圆，警方由此可以大胆猜测犯人的活动区域。</p>
                     <div class="form-group col-7">
-                        <label for="input_start_node">起始节点标号</label>
+                        <label for="input_start_node">案件A 标号</label>
                         <input type="number" class="form-control" id="input_start_node" placeholder="Put number here" value=1>
 
-                        <label for="input_end_node">结束节点标号</label>
+                        <label for="input_end_node">案件B 标号</label>
                         <input type="number" class="form-control" id="input_end_node" placeholder="Put number here" value=5>
                         <p id="shortest-path-error" class="mb-0 mt-1" style="color: red;"></p>
                     </div>
@@ -239,7 +243,7 @@
     </section>
 
     <!-- Minimum Tree Span -->
-    <section id="prim" class="pv-30">
+    <section id="prim" class="pv-30 section clearfix">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 justify-content-center text-center">
@@ -248,7 +252,11 @@
                 <div class="col-lg-6">
                     <h2 class="mt-4"><strong>最小</strong>支撑树</h2>
                     <div class="separator-2"></div>
-                    <p>用点和线勾勒出案件之间的千丝万缕</p>
+                    <p><strong>自动牵连案件的侦探线索墙！</strong></p>
+                    <p>通过案件与案件的关联和权重的大小，构造出一个最大可能的案件线索墙。</p>
+                    <p>在某个<strong>社区</strong>内发生了诸多起罪案，案件之间看似独立的案件，但或许都有着不为人知的牵连或暗地里拥有着一个幕后首脑。
+                        作为一名侦探，可以通过最小支撑树发现各个案件最大可能的关系（边权越小关系越大），在线索墙上把各个案件连接起来，
+                        并且从中推测出新线索以助破案。</p>
                     <div class="form-group col-7">
                         <label for="input_start_node">社区编号</label>
                         <input type="number" class="form-control" id="input_community_area" placeholder="Enter community area id" value="1">
@@ -268,22 +276,22 @@
                 <div class="col-lg-6 justify-content-center text-center">
                     <h2 class="mt-4"><strong>紧密</strong>中心度</h2>
                     <div class="separator"></div>
-                    <p>用点和线勾勒出案件之间的千丝万缕</p>
                     <p class="m-0">
-                        <mark class="red">红色</mark> xxxx
-                        <mark class="blue">蓝色</mark> xxx
+                        <mark class="red ml">红色</mark> 紧密度高 &emsp;
+                        <mark class="blue">蓝色</mark> 紧密度低
                     </p>
+                    <p class="mt-2">用点和线勾勒出案件之间的千丝万缕</p>
                     <svg id="closeness-svg" width="540" height="540"></svg>
                 </div>
                 <!-- Betweenness Centrality -->
                 <div class="col-lg-6 justify-content-center text-center">
                     <h2 class="mt-4"><strong>介数</strong>中心度</h2>
                     <div class="separator"></div>
-                    <p>用点和线勾勒出案件之间的千丝万缕</p>
                     <p class="m-0">
-                        <mark class="red">红色</mark> xxxx
-                        <mark class="blue">蓝色</mark> xxx
+                        <mark class="red">红色</mark> 介数中心度高 &emsp;
+                        <mark class="blue">蓝色</mark> 介数中心度低
                     </p>
+                    <p class="mt-2">用点和线勾勒出案件之间的千丝万缕</p>
                     <svg id="betweenness-svg" width="540" height="540"></svg>
                 </div>
             </div>
@@ -300,34 +308,28 @@
 
                 <div class="col-md-6 col-lg-3">
                     <div class="image-box team-member style-2 bordered light-gray-bg mb-20 text-center">
-                        <div class="overlay-container overlay-visible">
-                            <img src="" alt="">
-                            <div class="overlay-bottom">
-                                <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</p>
-                            </div>
-                        </div>
                         <div class="body">
                             <h3 class="margin-clear">苏敬恒</h3>
-                            <small>CEO</small>
+                            <small>2018080124</small>
                             <div class="separator mt-10"></div>
-                            <p>xxx</p>
+                            <p class="m-0">模型设计</p>
+                            <p class="m-0">最小支撑树</p>
+                            <p class="m-0">紧密中心度</p>
+                            <p class="m-0">可视化/网页设计</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3">
                     <div class="image-box team-member style-2 bordered light-gray-bg mb-20 text-center">
-                        <div class="overlay-container overlay-visible">
-                            <img src="" alt="">
-                            <div class="overlay-bottom">
-                                <p class="small margin-clear">Lorem ipsum dolor sit amet, consectetur adipisicing elit!</p>
-                            </div>
-                        </div>
                         <div class="body">
                             <h3 class="margin-clear">黄祖斌</h3>
-                            <small>CEO</small>
+                            <small>2018080120</small>
                             <div class="separator mt-10"></div>
-                            <p>xxx</p>
+                            <p class="m-0">模型设计</p>
+                            <p class="m-0">最短路径</p>
+                            <p class="m-0">介数中心度</p>
+                            <p class="m-0">可视化</p>
                         </div>
                     </div>
                 </div>

@@ -84,3 +84,7 @@ mark.blue{
 #about-us h2{
     color: white;
 }
+
+#about-us p{
+    font-size: 18px;
+}
