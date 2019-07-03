@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // Driver code
     // runClosenessCentrality();
+    //End of driver
 });
 
 async function runClosenessCentrality() {
