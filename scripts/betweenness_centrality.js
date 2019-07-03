@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Driver code
-    //runBetweennessCentrality();
+    // runBetweennessCentrality();
     //End of driver
 });
 
@@ -9,7 +9,7 @@ $(document).ready(function () {
 function runBetweennessCentrality()
 {
     let result = [];
-    for (let i = 0; i < edge.length + 1; i++) {
+    for (let i = 0; i < 10; i++) {
         result.push(betweennessCentrality(i));
     }
     downloadContentToFileName(result, "betweenness_data.json");
@@ -18,7 +18,7 @@ function runBetweennessCentrality()
 function betweennessCentrality(node) {
 
     const node_count = edge.length + 1; // number of nodes
-    const shortest_path_count = (node_count - 1) * (node_count - 2); // total number of possible permutation of sides, nP2
+    const shortest_path_count = (node_count - 1) * (node_count - 2); 
     let shortest_path_count_passing_through_node = 0; // number of shortest path passing through this node
 
     for (let i = 0; i < node_count; i++) {
@@ -26,10 +26,12 @@ function betweennessCentrality(node) {
 
             if (i == j || node == i || node == j) continue;
 
+            //get the shortest path info
             let info = shortest_paths[i][j];
 
-            if (info.path == "No Path") continue; // 
+            if (info.path == "No Path") continue; 
 
+            //If node exists on this shortest path
             if (info.path.indexOf(node) >= 0) {
 
                 shortest_path_count_passing_through_node++;
@@ -40,5 +42,5 @@ function betweennessCentrality(node) {
     }
 
     console.log("Total number of shortest paths passing through " + node + "th node = " + shortest_path_count_passing_through_node);
-    return shortest_path_count_passing_through_node / (shortest_path_count / 2);
+    return (shortest_path_count_passing_through_node / shortest_path_count); 
 }
