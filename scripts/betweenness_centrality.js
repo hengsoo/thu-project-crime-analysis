@@ -1,12 +1,19 @@
 $(document).ready(function () {
     // Driver code
-    // let result = [];
-    // for (let i = 0; i < edge.length + 1; i++) {
-    //     result.push(betweennessCentrality(i));
-    // }
-    // console.log(result);
-    // downloadContentToFileName(result, "betweenness_data.json");
+    //runBetweennessCentrality();
+    //End of driver
 });
+
+//This function calculates betweenness centrality for each node
+//and store the result into a json file named betweenness_data
+function runBetweennessCentrality()
+{
+    let result = [];
+    for (let i = 0; i < edge.length + 1; i++) {
+        result.push(betweennessCentrality(i));
+    }
+    downloadContentToFileName(result, "betweenness_data.json");
+}
 
 function betweennessCentrality(node) {
 
