@@ -33,8 +33,7 @@ $(document).ready(function () {
 // Given start and end, finds the shortest path using dijkstra
 function shortestPath(start = 0, end = 10) {
     
-    if(start==end)
-    {
+    if(start === end){
         return {"path": [start], "cost": 0};
     }
     
