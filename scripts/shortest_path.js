@@ -32,9 +32,11 @@ $(document).ready(function () {
 
 // Given start and end, finds the shortest path using dijkstra
 function shortestPath(start = 0, end = 10) {
-    if (start == end) {
-        return {"path": "No Path", "cost": 0};
+    
+    if(start === end){
+        return {"path": [start], "cost": 0};
     }
+    
     const MAX = Infinity;
     const node_count = edge.length + 1;
     
@@ -44,6 +46,7 @@ function shortestPath(start = 0, end = 10) {
         //end the function
         return;
     }
+
     //initialize some array that will be used to store parent,shortest path length
     let vertices = [];
     for (let i = 0; i < node_count; i++) {
