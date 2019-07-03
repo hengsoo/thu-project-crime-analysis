@@ -37,15 +37,12 @@ function shortestPath(start = 0, end = 10) {
     }
     const MAX = Infinity;
     const node_count = edge.length + 1;
+    
     //double security
     if (!(start >= 0 && end < vertex_data.length)) {
         console.log("start and end node error");
         //end the function
         return;
-    }
-    //distance to self is 
-    if (start == end) {
-        return {"path": [start], "cost": 0};
     }
     //initialize some array that will be used to store parent,shortest path length
     let vertices = [];
