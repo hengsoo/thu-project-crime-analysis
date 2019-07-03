@@ -20,7 +20,7 @@ Run `npm run dev` to run **browser-sync**
 | :-----: | :-----------------------: | :--------------------------------------: |
 |  views  |        index.html         |              **Index file**              |
 | scripts | betweenness_centrality.js | Algorithm for **Betweenness Centrality** |
-| scripts |  closeness centrality.js  |  Algorithm for **Closeness Centrality**  |
+| scripts |  closeness_centrality.js  |  Algorithm for **Closeness Centrality**  |
 | scripts |          prim.js          |   Algorithm for **Minimum Tree Span**    |
 | scripts |     shortest_path.js      |     Algorithm for **Shortest Path**      |
 | scripts |      create_graph.js      |  **Create Vertices and Edges** Function  |
