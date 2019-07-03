@@ -28,21 +28,21 @@ Run `npm run dev` to run **browser-sync**
 
 ## Technology Used
 
-|        Aspects         |                                                              |
-| :--------------------: | ------------------------------------------------------------ |
+|        Aspects         |                         Description                          |
+| :--------------------: | :----------------------------------------------------------: |
 |     Visualization      | Force-Directed graph with d3js, represented using svg element in HTML |
 |      Data storage      | Calculate and store in json then convert to 1-D array / 2-D array in JavaScript |
-|     Shortest Path      | Dijkstra Single Source Shortest Path algorithm               |
-|   Minimum Tree Span    | Prim's algorithm                                             |
-|  Closeness Centrality  | Definition of Closeness Centrality                           |
-| Betweenness Centrality | Definition of Betweenness Centrality                         |
+|     Shortest Path      |        Dijkstra Single Source Shortest Path algorithm        |
+|   Minimum Tree Span    |                       Prim's algorithm                       |
+|  Closeness Centrality  |              Definition of Closeness Centrality              |
+| Betweenness Centrality |             Definition of Betweenness Centrality             |
 
 
 
 ## Special Consideration
 
-1. Although the graph is undirected, when calculating the shortest path, we maintain the flow of timeline. That means, on a shortest path, a node placed after another node happens later than the other node.
-2. When calculating Betweenness Centrality, we do not consider multiple shortest path from a node to another. This is because the weight of each edge is a decimal number with lots of digit, there is a small chance that the total cost of two path is same.
+1. Although the graph is undirected, when calculating the shortest path, we maintain the **flow of timeline**. That means, on a shortest path, a node placed after another node happens later than the other node.
+2. When calculating Betweenness Centrality, we do not consider **multiple** shortest path from a node to another. This is because the weight of each edge is a decimal number with lots of digit, there is a small chance that the total cost of two path is same.
 
 ## Author
 
