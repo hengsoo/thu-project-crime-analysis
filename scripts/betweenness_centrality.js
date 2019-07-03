@@ -9,7 +9,7 @@ $(document).ready(function () {
 function runBetweennessCentrality()
 {
     let result = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0 ; i < edge.length + 1 ; i++) {
         result.push(betweennessCentrality(i));
     }
     downloadContentToFileName(result, "betweenness_data.json");
@@ -18,7 +18,7 @@ function runBetweennessCentrality()
 function betweennessCentrality(node) {
 
     const node_count = edge.length + 1; // number of nodes
-    const shortest_path_count = (node_count - 1) * (node_count - 2); 
+    const shortest_path_count = (node_count - 1) * (node_count - 2); // total number of possible permutation of sides, nP2
     let shortest_path_count_passing_through_node = 0; // number of shortest path passing through this node
 
     for (let i = 0; i < node_count; i++) {
